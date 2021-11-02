@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FORNITER - Productos</title>
+    <link rel="stylesheet" href="primerEstilo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"><!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>    
+      <img width="80px" class="header--image"
+      src="http://http2.mlstatic.com/D_607303-MLA43671849199_102020-O.jpg"
+      alt="logo de mueble"
+      srcset=""
+      />
+      <h1 class="body__header--text" id="encabezado">FORNITER - Productos</h1><!--titulo de la página-->
+      <div class="container__nav--list">
+        <nav class="nav__list--header"><!--menu de navegacion-->
+          <ul class="menu__list--header">
+            <li class="menu__list--item"><a href="index.html">Home</a></li>
+            <li class="menu__list--item"><a href="productosFornites.html">Productos</a></li>
+            <li class="menu__list--item"><a href="empresaForniter.html">Empresa</a></li>
+            <li class="menu__list--item"><a href="registroForniter.html">Registro</a></li>
+            <li class="menu__list--item"><a href="contactoForniter.html">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+             <div>
+        <h2 class="titulo2"> Armalo vos </h2>
+        <p>
+          En esta sección podes seleccionar el producto que queres llevar con tu diseño personalizado.
+        </p>
+        
+        <h3>
+        PRODUCTOS DISPONIBLES</h3>
+        <ul class="lista1" id="listaProductos"> </ul>
+        <!--<form>
+          <p>Ingrese el producto a adquirir</p>
+          <input id="producto" type="text">
+          <p>Indique la cantidad a adquirir</p>
+          <input id="cantProducto" type="text">
+          <button id="addProducto">Agregar</button>
+        
+        </form>-->
+        <h3>
+        ACCESORIOS DISPONIBLES</h3>
+        <ul class="lista1" id="listaAccesorios"></ul>
+        <!--<form>
+          <p>Ingrese el accesorio a adquirir</p>
+          <input id="accesorio" type="text">
+          <button id="addAccesorio">Agregar</button>
+        </form>-->
+<h3>PRODUCTOS SELECCIONADOS</h3>
+        <div id="listaProductosAgregados">
+          <p id="sinProducto">No agregó productos! </p>
+                </div>
+                  <h3 id=>ACCESORIOS SELECCIONADOS</h3>
+        <div id="listaAccesoriosAgregados">
+          <p id="sinAccesorio">No agregó accesorios!</p>
+        </div>
+                   
+                       
+        </div>
+      <div>
+        <h2 class="titulo1">Estandar</h2>
+        <p>
+          Productos directos de fábrica con los diseños estándar mas elegidos para todos tus ambientes.
+        </p>
+      </div>
+      <div>
+        <h2 class="titulo1">Modular</h2>
+        <p>
+          Muebles con esquemas bases de fácil armado y ampliables acordes a tus ambientes.
+        </p>
+        <div><!--table de productos-->
+          <table border="1px solid black" cellpadding="5" cellspacing="5">
+            <tr>
+              <th>Nombre</th>
+              <th>Material</th>
+              <th>Color</th>
+              <th>Modular</th>
+              <th>Características</th>
+            </tr>
+            <tr>
+              <td>Rubicon</td>
+              <td>MDF</td>
+              <td>Negro tabaco</td>
+              <td>Si</td>
+              <td>
+                <ul class="ult"">
+                  <li>Fácil armado</li>
+                  <li>Antihumedad</li>
+                  <li>Diseño a medida</li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+           <script src="clase9.js"></script>
+    </main>
+    <footer><!--pie de pagina-->
+      <h4>Desarrollo</h4>
+      <p class="ult">
+        Producido por <em>VIAFRET</em> para CODERHOUSE-
+        <strong>2021</strong>
+      </p>
+      <div><!--link al inicio de página-->
+        <a class="ult" href="#encabezado">Ir al inico de página</a>
+    </div>
+    </footer>
+  </body>
+</html>

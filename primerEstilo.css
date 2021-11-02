@@ -1,0 +1,108 @@
+/*damos formato a las tablas*/
+table {
+  border: 3px solid;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+th {
+  background-color: #cccccc;
+  border: 1px solid;
+}
+
+tr {
+  border: 1px solid;
+}
+td {
+  background-color: rgb(187, 255, 255);
+  border: 1px solid;
+}
+
+/*damos formato a los items de las listas*/
+ul {
+  color: rgb(7, 70, 95);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+/*damos formato a los h1*/
+h1 {
+  border: 1 px darkcyan;
+  color: rgb(211, 112, 0);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*damos formato a los h2*/
+h2 {
+  background-color: rgb(231, 212, 209);
+  color: rgb(19, 199, 139);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*damos formato a los h2*/
+h3 {
+  color: crimson;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*damos formato a los h4*/
+h4 {
+  color: brown;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*definimos clases para los encabezados*/
+.titulo1 {
+  color: rgb(1, 111, 144);
+}
+
+.titulo2 {
+  color: rebeccapurple;
+}
+
+/*definimos el color de texto de los parrafos*/
+p {
+  color: rgb(63, 16, 16);
+  font-size: 18px;
+  font-style: italic;
+}
+
+/*definimos un tipo de texto particular*/
+.ult {
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.body__header--text {
+  color: blueviolet;
+  font-family: Roboto;
+}
+
+menu__list--header {
+  color: rgb(38, 255, 0);
+  font-family: roboto;
+  font-style: italic;
+}
+.menu__list--item {
+  color: rgb(155, 155, 7);
+  font-family: roboto;
+  font-size: 20px;
+}
+a {
+  color: blue;
+  font-family: roboto;
+  font-size: 20px;
+}
+
+.lista__productos--botonAgregar {
+  color: rgb(86, 131, 2);
+  background-color: rgb(128, 231, 138);
+  font: size 20px;
+  margin: 5px;
+}
+
+.lista__accesorios--botonAgregar {
+  color: rgb(199, 19, 79);
+  background-color: rgb(197, 166, 107);
+  font: size 20px;
+  margin: 5px;
+}
