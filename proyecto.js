@@ -2,10 +2,6 @@
 let productos = 0; //* Variable para la cantidad de productos
 //let cantProd; //*Variable para la cantidad de productos a adquirir
 let cantiAcces = 0; //Variable de total de accesorios agregados
-let valido; //*variable auxiliar de producto valido
-//const valAcc1 = 500;
-//const valAcc2 = 1000;
-//const valAcc3 = 1500;
 
 //Definición clase objeto mueble que permite identificarlo, darle precio y verificar si dispone de accesorios
 class mueble {
@@ -88,26 +84,30 @@ function listaProdAgregados(_producto) {
   }
 }
 
+//eliminar producto seleccionado
 function eliminarProd(e) {
   let hijo = e.target;
   let padre1 = hijo.parentNode;
   let padre2 = hijo.parentNode.parentNode;
-  let vacio = padre2.childElementCount;
-  console.log(vacio);
-  console.log(padre1);
-  console.log(padre2);
+  let vacio = padre2.childElementCount; //número de elementos agregados
+  //console.log(vacio);
+  //console.log(padre1);
+  //console.log(padre2);
 
+  //si en la lista hay más de un producto agregado
   if (vacio > 1) {
     console.log("Quiere eliminar el producto!");
     console.log(hijo);
     padre2.removeChild(padre1);
     productos--;
-  } else {
+  }
+  //si en la lista hay solo un producto agregado
+  else {
     console.log(hijo);
     padre2.removeChild(padre1);
     let agregados = document.getElementById("listaProductosAgregados");
     let sinProducto = document.createElement("p");
-    sinProducto.innerHTML = `No agregó productos!`;
+    sinProducto.innerHTML = `No agregó productos!`; //al eliminar el unico producto se agrega el texto original
     agregados.appendChild(sinProducto);
     productos--;
   }
@@ -252,10 +252,6 @@ for (let boton of botAgregaAcces) {
 
 //Función para el ingreso del producto a adquirir
 function seleccion(e) {
-  /*let _producto = prompt(
-    "Escriba el producto que desea adquirir: ALACENA, RACKTV, PLACARD"
-  );*/
-  //e.preventDefault();
   let hijo = e.target;
   let padre = hijo.parentNode;
   console.log(hijo);
@@ -307,37 +303,8 @@ function validacion(_prodIngresa) {
   }
 }
 
-//*Función para el ingreso de las cantidades
-/*function cantidad(_valido) {
-  if (_valido != "") {
-    //Si el prodcuto es válido se procede a la selección de cantidades
-    /*cantProd = parseInt(
-      prompt("Ingrese la cantidad a comprar (máximo 5 unidades): ") //*se alamcena la cantidad en la variale global
-    );*/
-/*let _cantProducto = parseInt(document.getElementById("cantProducto").value);
-    if (_cantProducto <= 5 && _cantProducto > 0) {
-      alert("Cantidad de unidades seleccionadas: " + _cantProducto);
-    } else {
-      alert("La cantidad ingresada es incorrecta");
-      return (_cantProducto = 0);
-    }
-  } else {
-    alert("El producto ingresado no existe"); //*Se responde si el producto no es válido
-    return (cantProd = 0);
-  }
-}*/
-
-//*Función para ingresar accesorios
+//Función para ingresar accesorios
 function definAcc(e) {
-  //Se recibe la cantidad de unidades
-  //if (_cantProd != 0) {
-  //Si el producto fue validad y la cantidad no es cero se procede con los accesorios
-  //let agregaAcc = prompt("Desea agregar un accesorio? Escriba S ó N");
-  //   if (agregaAcc == "S") {
-  //     while (agregaAcc == "S") {
-  //*bucle para el ingreso de aacesorios
-  //let _tipoAcce = prompt("Que accesorio desea agregar? Escriba A, B o C");
-
   let hijo = e.target;
   let padre = hijo.parentNode;
   console.log(hijo);
@@ -371,21 +338,6 @@ function definAcc(e) {
   //tipoAcce(aCant); //determina los tipos de accesorios definidos
   listaAcceAgregados(_tipoAcce); //muestra accesorios seleccionados en HTML
 
-  //} else if (agregaAcc == "N") {
-  //*Si no se desea agregar accesorios
-  //alert("No agregó accesorios!");
-  //  console.log("No agrega accesorios");
-  //}
-  //Si se ingresa una opción incorrecta
-  //else {
-  //  alert("Opción incorrecta, no agrega accesorios!"); //*Si la respuesta no es S o N
-  //}
-  //}
-  //*No se puede agregar accesorios porque no hay productos validados
-  //else {
-  //  alert("No se pueden agregar accesorios!!!");
-  //}
-  //se muestra por consola la cantidad de cada accesorio seleccionado
   console.log("Accesorios del tipo A seleccionados: " + aCant[0]);
   console.log("Accesorios del tipo B seleccionados: " + aCant[1]);
   console.log("Accesorios del tipo C seleccionados: " + aCant[2]);

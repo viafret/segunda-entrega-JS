@@ -88,6 +88,7 @@ menu__list--header {
   font-style: italic;
 }
 .menu__list--item {
+  line-height: 1.6;
   color: rgb(155, 155, 7);
   font-family: roboto;
   font-size: 20px;
