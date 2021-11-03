@@ -111,7 +111,9 @@ function eliminarProd(e) {
     console.log("Quiere eliminar el producto!");
     console.log(hijo);
     padre2.removeChild(padre1);
-    productos--;
+    //descartar(padre1.firstChild.data);
+    console.log(padre1.firstChild.data);
+    //productos--;
   }
   //si en la lista hay solo un producto agregado
   else {
@@ -121,8 +123,12 @@ function eliminarProd(e) {
     let sinProducto = document.createElement("p");
     sinProducto.innerHTML = `No agregó productos!`; //al eliminar el unico producto se agrega el texto original
     agregados.appendChild(sinProducto);
-    productos--;
+    //descartar(padre1.firstChild.data);
+    console.log(padre1.firstChild.data);
+    //productos--;
   }
+  descartar(padre1.firstChild.data);
+  sumar();
   console.log(vacio);
 }
 
@@ -210,7 +216,8 @@ function eliminarAcces(e) {
     console.log("Quiere eliminar el accesorio!");
     console.log(hijo);
     padre2.removeChild(padre1);
-    cantiAcces--;
+
+    //cantiAcces--;
   } else {
     console.log(hijo);
     padre2.removeChild(padre1);
@@ -218,9 +225,11 @@ function eliminarAcces(e) {
     let sinAccesorio = document.createElement("p");
     sinAccesorio.innerHTML = `No agregó accesorios!`;
     agregados.appendChild(sinAccesorio);
-    cantiAcces--;
+    //cantiAcces--;
   }
   console.log(vacio);
+  descartarAcce(padre1.firstChild.data);
+  sumar();
 }
 
 //Definición clase compra que identifica el tipo y cantidad del producto
@@ -299,18 +308,26 @@ function seleccion(e) {
 
   listaProdAgregados(_producto);
   sumar();
+}
 
-  /*if (
-    _producto == "ALACENA" ||
-    _producto == "RACKTV" ||
-    _producto == "PLACARD"
-  ) {
-    console.log("Ha seleCcionado el producto: " + _producto);
-    validacion(_producto);
-    return _producto; //*Retorna el producto si la seleección es válida
+//función para descartar el producto
+function descartar(_producto) {
+  if (_producto == mueblesDisp[0].nombre) {
+    productos--;
+    mueble1.cantidad--;
+    //compra.addItem(mueble1);
+  } else if (_producto == mueblesDisp[1].nombre) {
+    productos--;
+    mueble2.cantidad--;
+    //compra.addItem(mueble2);
+  } else if (_producto == mueblesDisp[2].nombre) {
+    productos--;
+    mueble3.cantidad--;
+    //compra.addItem(mueble3);
   } else {
-    return (_producto = 0); //*Retorna vacío se la selección no es válida
-  }*/
+    alert("Entrada inválida"); //* no existe
+    console.log("Selección invalida");
+  }
 }
 
 /*Función para validar y mostrar el valor del producto
@@ -382,65 +399,23 @@ function definAcc(e) {
   console.log("Accesorios del tipo C seleccionados: " + aCant[2]);
 }
 
-//*Función para calcular el costo total
-function costoTotal(_producto) {
-  //*
-  if (cantProd == 0) {
-    //*Producto y cantidad invalidada
-    console.log("No ha ingresado productos o cantidades válidas");
-  } else if (_producto == "ALACENA") {
-    _total =
-      cantProd * mueble1.precio +
-      accesorio1.precio * aCant[0] +
-      accesorio2.precio * aCant[1] +
-      accesorio3.precio * aCant[2];
-    //se define objeto de compra
-    let compra1 = new compra(
-      producto,
-      cantProd,
-      aCant[0] + aCant[1] + aCant[2]
-    );
-    compra1.showProducto();
-    compra1.showAccesorio();
-    listaProdAgregados();
-
-    alert("EL valor total a pagar es de: " + _total);
-  } else if (_producto == "RACKTV") {
-    _total =
-      cantProd * mueble2.precio +
-      accesorio1.precio * aCant[0] +
-      accesorio2.precio * aCant[1] +
-      accesorio3.precio * aCant[2];
-    //se define objeto de compra
-    let compra1 = new compra(
-      producto,
-      cantProd,
-      aCant[0] + aCant[1] + aCant[2]
-    );
-    compra1.showProducto();
-    compra1.showAccesorio();
-    listaProdAgregados();
-
-    alert("EL valor total a pagar es de: " + _total);
-  } else if (_producto == "PLACARD") {
-    _total =
-      cantProd * mueble3.precio +
-      accesorio1.precio * aCant[0] +
-      accesorio2.precio * aCant[1] +
-      accesorio3.precio * aCant[2];
-    //se define objeto de compra
-    let compra1 = new compra(
-      producto,
-      cantProd,
-      aCant[0] + aCant[1] + aCant[2]
-    );
-    compra1.showProducto();
-    compra1.showAccesorio();
-    listaProdAgregados();
-
-    alert("El valor total a pagar es de: " + _total);
+//función para descartar el accesorio
+function descartarAcce(_accesorio) {
+  if (_accesorio == accesoriosDisp[0].nombre) {
+    cantiAcces--;
+    accesorio1.cantidad--;
+    //compra.addItem(mueble1);
+  } else if (_accesorio == accesoriosDisp[1].nombre) {
+    cantiAcces--;
+    accesorio2.cantidad--;
+    //compra.addItem(mueble2);
+  } else if (_accesorio == accesoriosDisp[2].nombre) {
+    cantiAcces--;
+    accesorio3.cantidad--;
+    //compra.addItem(mueble3);
   } else {
-    console.log("Los datos ingresados son incorrectos!"); //*Mensaje final de procedimiento incorrecto
+    alert("Entrada inválida"); //* no existe
+    console.log("Selección invalida");
   }
 }
 
@@ -457,7 +432,7 @@ if (sessionStorage.cart == undefined) {
   actualizar();
 }
 
-//
+//funcion para calcular el monto total
 function sumar() {
   let total = document.getElementById("total");
   let sumaMuebles =
@@ -471,7 +446,9 @@ function sumar() {
   let totalSuma = sumAccesorios + sumaMuebles;
   console.log(totalSuma);
   total.textContent = `Total: ${totalSuma}$`;
+  sessionStorage.cart = JSON.stringify(carrito);
 }
+
 // console.log(carrito.total);
 // console.log(carrito);
 
