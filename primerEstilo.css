@@ -63,7 +63,29 @@
 #total {
   background-color: black;
   text-align: center;
-  color: azure;
+  color: white;
+  font-weight: bold;
+  margin: 1 px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#sinProducto {
+  color: rgb(86, 131, 2);
+  background-color: rgb(128, 231, 138);
+  font: size 20px;
+  margin: 5px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#sinAccesorio {
+  color: rgb(86, 131, 2);
+  text-align: center;
+  background-color: rgb(128, 231, 138);
+  font: size 20px;
+  margin: 5px;
 }
 
 table {
