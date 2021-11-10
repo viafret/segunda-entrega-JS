@@ -1,10 +1,5 @@
-//*selección y cálculo del valor de los productos a adquirir
-let productos = 0; //* Variable para la cantidad de productos
-//let cantProd; //*Variable para la cantidad de productos a adquirir
-let cantiAcces = 0; //Variable de total de accesorios agregados
-
 //Definición clase objeto mueble que permite identificarlo, darle precio y verificar si dispone de accesorios
-class mueble {
+class Mueble {
   constructor(id, nombre, precio, cantidad, stock, accesorios) {
     this.id = id;
     this.nombre = nombre;
@@ -32,10 +27,14 @@ class mueble {
   }
 }
 
+//let accesoriosMueble1 = [Puerta, Manija, Estante];
+//let accesoriosMueble2 = [Rueda, Puerta, Estante];
+//let accesoriosMueble3 = [Puerta, Manija, Cajón];
+
 //Se agregan los datos de tres tipos de productos
-let mueble1 = new mueble(1, "ALACENA", 9000, 0, 20, "S");
-let mueble2 = new mueble(2, "RACKTV", 10000, 0, 20, "N");
-let mueble3 = new mueble(3, "PLACARD", 20000, 0, 20, "S");
+let mueble1 = new Mueble(1, "ALACENA", 9000, 0, 20, "S");
+let mueble2 = new Mueble(2, "RACKTV", 10000, 0, 20, "N");
+let mueble3 = new Mueble(3, "PLACARD", 20000, 0, 20, "S");
 
 //array de muebles disponibles
 let mueblesDisp = [mueble1, mueble2, mueble3];
@@ -46,22 +45,30 @@ let carritoMuebles = [];
 
 //funcion para armar lista de Prductos en el HTML
 function armarListaProd() {
-  let lista = document.querySelector(".seccionProductos");
-  console.log(lista);
+  //let lista = document.querySelector(".seccionProductos");
+  //console.log(lista);
   for (const muebles of mueblesDisp) {
-    let bloque = document.createElement("div");
-    let texto1 = document.createElement("h4");
-    let texto2 = document.createElement("p");
-    let boton = document.createElement("a");
-    texto1.innerHTML = `${muebles.nombre}`;
-    texto2.innerHTML = `Valor: $  ${muebles.precio}`;
-    boton.innerHTML = `Agregar`;
-    boton.href = `#`;
-    boton.className = `lista__productos--botonAgregar`;
-    lista.appendChild(bloque);
-    bloque.appendChild(texto1);
-    bloque.appendChild(texto2);
-    bloque.appendChild(boton);
+    $(".seccionProductos").append(
+      `<div>
+      <h4>${muebles.nombre}</h4>
+<p>Valor: $  ${muebles.precio}</p>
+<a href="#" class="lista__productos--botonAgregar">Agregar</a>
+    </div>`
+    );
+
+    //let bloque = document.createElement("div");
+    //let texto1 = document.createElement("h4");
+    //let texto2 = document.createElement("p");
+    //let boton = document.createElement("a");
+    //texto1.innerHTML = `${muebles.nombre}`;
+    //texto2.innerHTML = `Valor: $  ${muebles.precio}`;
+    //boton.innerHTML = `Agregar`;
+    //boton.href = `#`;
+    //boton.className = `lista__productos--botonAgregar`;
+    //lista.appendChild(bloque);
+    //bloque.appendChild(texto1);
+    //bloque.appendChild(texto2);
+    //bloque.appendChild(boton);
     //console.log(boton);
   }
   //determinamos si hay productos en la sesion
@@ -92,9 +99,6 @@ function productoAlmacenado() {
       } else {
         return;
       }
-
-      //productos.push(new Producto(objeto));
-      //Ahora tenemos objetos productos y podemos
     }
   }
 }
@@ -113,6 +117,69 @@ function actualizarProductos() {
   productosLocal(accesorio3.nombre, JSON.stringify(aCant[2]));
 }
 
+function seleccion(e) {
+  let hijo = e.target;
+  let padre = hijo.parentNode;
+  console.log(hijo);
+  console.log(padre);
+
+  //let _producto = document.getElementById("producto").value;
+  let _producto = padre.firstElementChild.innerText;
+  console.log(_producto);
+
+  /*for (const productos of mueblesDisp) {
+    if (_producto == productos.nombre) {
+      carritoMuebles.push(productos); //suma al array
+      productos.cantidad++;
+      //compra.addItem(mueble1);
+    } else {
+      //alert("Entrada inválida"); // no existe
+      console.log("Selección invalida");
+    }*/
+
+  if (_producto == mueblesDisp[0].nombre) {
+    carritoMuebles.push(mueble1); //suma al array
+
+    mueble1.cantidad++;
+    //compra.addItem(mueble1);
+  } else if (_producto == mueblesDisp[1].nombre) {
+    carritoMuebles.push(mueble2); //suma al array
+
+    mueble2.cantidad++;
+    //compra.addItem(mueble2);
+  } else if (_producto == mueblesDisp[2].nombre) {
+    carritoMuebles.push(mueble3); //suma al array
+
+    mueble3.cantidad++;
+    //compra.addItem(mueble3);
+  } else {
+    alert("Entrada inválida"); //* no existe
+    console.log("Selección invalida");
+  }
+
+  //carritoMuebles.push(_producto);
+  console.log(carritoMuebles);
+  listaProdAgregados(_producto);
+  sumar();
+}
+
+//función para descartar el producto
+function descartar(_producto) {
+  if (_producto == mueblesDisp[0].nombre) {
+    mueble1.cantidad--;
+    //compra.addItem(mueble1);
+  } else if (_producto == mueblesDisp[1].nombre) {
+    mueble2.cantidad--;
+    //compra.addItem(mueble2);
+  } else if (_producto == mueblesDisp[2].nombre) {
+    mueble3.cantidad--;
+    //compra.addItem(mueble3);
+  } else {
+    alert("Entrada inválida"); //* no existe
+    console.log("Selección invalida");
+  }
+}
+
 //funcion para armar lista de Productos agregados para compra en el HTML
 function listaProdAgregados(_producto) {
   let agregado = document.getElementById("listaProductosAgregados");
@@ -121,9 +188,16 @@ function listaProdAgregados(_producto) {
   let boton = document.createElement("a"); //eliminar producto seleccionado
   boton.href = `#`;
   boton.className = `lista__productos--botonEliminar`;
-  let prodAdd = mueble1.cantidad + mueble2.cantidad + mueble3.cantidad;
-  if (prodAdd == 1) {
-    agregado.removeChild(sinProducto);
+  //let prodAdd = mueble1.cantidad + mueble2.cantidad + mueble3.cantidad;
+  //console.log(prodAdd);
+  producto.innerHTML = `${_producto}`;
+  boton.innerHTML = `Eliminar`;
+  $("#sinProducto").hide();
+  agregado.appendChild(producto);
+  producto.appendChild(boton);
+  /*if (prodAdd == 1) {
+    $("#sinProducto").hide();
+    //agregado.removeChild(sinProducto);
     producto.innerHTML = `${_producto}`;
     boton.innerHTML = `Eliminar`;
     agregado.appendChild(producto);
@@ -133,8 +207,9 @@ function listaProdAgregados(_producto) {
     boton.innerHTML = `Eliminar`;
     agregado.appendChild(producto);
     producto.appendChild(boton);
-  }
+  }*/
   //evento para eliminar producto seleccionado
+  //$(".lista__productos--botonEliminar").click(eliminarProd);
   let botEliminarProd = document.querySelectorAll(
     ".lista__productos--botonEliminar"
   );
@@ -149,10 +224,16 @@ function eliminarProd(e) {
   let padre1 = hijo.parentNode;
   let padre2 = hijo.parentNode.parentNode;
   let vacio = padre2.childElementCount; //número de elementos agregados
+  console.log(hijo);
+  console.log(vacio);
+  console.log(padre1);
+  console.log(padre2);
 
+  let prodAdd = mueble1.cantidad + mueble2.cantidad + mueble3.cantidad;
   //si en la lista ya hay un producto agregado
-  if (vacio > 1) {
+  if (prodAdd > 1) {
     console.log("Quiere eliminar el producto!");
+    //padre2.removeChild(padre1);
     padre2.removeChild(padre1);
   }
   //si en la lista hay solo un producto agregado
@@ -160,22 +241,31 @@ function eliminarProd(e) {
   //al eliminarlo
   else {
     console.log(hijo);
+    //padre2.removeChild(padre1);
     padre2.removeChild(padre1);
-    let agregados = document.getElementById("listaProductosAgregados");
-    let sinProducto = document.createElement("p");
-    sinProducto.innerHTML = `No agregó productos!`; //al eliminar el unico producto se agrega el texto original
-    sinProducto.id = `sinProducto`;
-    agregados.appendChild(sinProducto);
+    //let agregados = document.getElementById("listaProductosAgregados");
+    //let sinProducto = document.createElement("p");
+    //sinProducto.innerHTML = `No agregó productos!`; //al eliminar el unico producto se agrega el texto original
+    //sinProducto.id = `sinProducto`;
+    //agregados.appendChild(sinProducto);
     console.log(padre1.firstChild.data);
+    $("#sinProducto").show();
   }
+  console.log(hijo);
+  console.log(vacio);
+  console.log(padre1);
+  console.log(padre2);
+
   //función para modificar cantidades
+  console.log(padre1.firstChild.data);
   descartar(padre1.firstChild.data);
   //se hace el nuevo cálculo y actualiza valor total
   sumar();
+  //console.log(vacio);
 }
 
 //clase para accesorios
-class accesorio {
+class Accesorio {
   constructor(id, nombre, color, precio) {
     this.id = id;
     this.nombre = nombre;
@@ -185,9 +275,9 @@ class accesorio {
 }
 
 //carga de accesrios disponibles
-let accesorio1 = new accesorio(1, "Puerta", "blanco", 1500);
-let accesorio2 = new accesorio(2, "Estante", "blanco", 1000);
-let accesorio3 = new accesorio(3, "Rueda", "negro", 300);
+let accesorio1 = new Accesorio(1, "Puerta", "blanco", 1500);
+let accesorio2 = new Accesorio(2, "Estante", "blanco", 1000);
+let accesorio3 = new Accesorio(3, "Rueda", "negro", 300);
 
 //definición de array de accesorios disponibles
 let accesoriosDisp = [accesorio1, accesorio2, accesorio3];
@@ -278,6 +368,7 @@ function eliminarAcces(e) {
   let padre1 = hijo.parentNode;
   let padre2 = hijo.parentNode.parentNode;
   let vacio = padre2.childElementCount;
+  console.log(hijo);
   console.log(vacio);
   console.log(padre1);
   console.log(padre2);
@@ -304,7 +395,7 @@ function eliminarAcces(e) {
 }
 
 //Definición clase compra que identifica el tipo y cantidad del producto
-class compra {
+class Compra {
   constructor(muebles, cantidad, total) {
     this.muebles = muebles;
     this.cantidad = cantidad;
@@ -323,83 +414,36 @@ armarListaProd();
 armarListaAcce();
 
 //evento del boton agregr producto
-//let botAgregaProd = document.getElementById("addProducto");
-let botAgregaProd = document.querySelectorAll(
+/*let botAgregaProd = document.querySelectorAll(
   ".lista__productos--botonAgregar"
-);
-
-//evento del boton agregar accesorio
-let botAgregaAcces = document.querySelectorAll(
-  ".lista__accesorios--botonAgregar"
-);
+);*/
 
 //agregar eventos al link agregar productos
-for (let boton of botAgregaProd) {
+/*for (let boton of botAgregaProd) {
   boton.addEventListener("click", seleccion);
-}
+}*/
+
+//se espera hasta que se arme todo el DOM para el evento click
+$(() => {
+  $(".lista__productos--botonAgregar").click(seleccion);
+});
+
+//evento del boton agregar accesorio
+/*let botAgregaAcces = document.querySelectorAll(
+  ".lista__accesorios--botonAgregar"
+);*/
 
 //agregar eventos al link agregar accesorioss
-for (let boton of botAgregaAcces) {
+/*for (let boton of botAgregaAcces) {
   boton.addEventListener("click", definAcc);
-}
+}*/
+
+//se espera hasta que se arme todo el DOM para el evento click
+$(() => {
+  $(".lista__accesorios--botonAgregar").click(definAcc);
+});
 
 //Función para el ingreso del producto a adquirir
-function seleccion(e) {
-  let hijo = e.target;
-  let padre = hijo.parentNode;
-  console.log(hijo);
-  console.log(padre);
-
-  //let _producto = document.getElementById("producto").value;
-  let _producto = padre.firstChild.textContent;
-
-  if (_producto == mueblesDisp[0].nombre) {
-    carritoMuebles.push(mueble1); //suma al array
-    //productos++;
-    mueble1.cantidad++;
-    //compra.addItem(mueble1);
-  } else if (_producto == mueblesDisp[1].nombre) {
-    carritoMuebles.push(mueble2); //suma al array
-    //productos++;
-    mueble2.cantidad++;
-    //compra.addItem(mueble2);
-  } else if (_producto == mueblesDisp[2].nombre) {
-    carritoMuebles.push(mueble3); //suma al array
-    //productos++;
-    mueble3.cantidad++;
-    //compra.addItem(mueble3);
-  } else {
-    alert("Entrada inválida"); //* no existe
-    console.log("Selección invalida");
-  }
-
-  //carritoMuebles.push(_producto);
-  //productos++;
-  console.log(carritoMuebles);
-
-  listaProdAgregados(_producto);
-  sumar();
-}
-
-//función para descartar el producto
-function descartar(_producto) {
-  if (_producto == mueblesDisp[0].nombre) {
-    //productos--;
-    mueble1.cantidad--;
-    //compra.addItem(mueble1);
-  } else if (_producto == mueblesDisp[1].nombre) {
-    //productos--;
-    mueble2.cantidad--;
-    //compra.addItem(mueble2);
-  } else if (_producto == mueblesDisp[2].nombre) {
-    //productos--;
-    mueble3.cantidad--;
-    //compra.addItem(mueble3);
-  } else {
-    alert("Entrada inválida"); //* no existe
-    console.log("Selección invalida");
-  }
-}
 
 //Función para ingresar accesorios
 function definAcc(e) {
@@ -439,23 +483,23 @@ function definAcc(e) {
   listaAcceAgregados(_tipoAcce); //muestra accesorios seleccionados en HTML
   sumar();
 
-  console.log("Accesorios del tipo A seleccionados: " + aCant[0]);
-  console.log("Accesorios del tipo B seleccionados: " + aCant[1]);
-  console.log("Accesorios del tipo C seleccionados: " + aCant[2]);
+  //console.log("Accesorios del tipo A seleccionados: " + aCant[0]);
+  //console.log("Accesorios del tipo B seleccionados: " + aCant[1]);
+  //console.log("Accesorios del tipo C seleccionados: " + aCant[2]);
 }
 
 //función para descartar el accesorio
 function descartarAcce(_accesorio) {
   if (_accesorio == accesoriosDisp[0].nombre) {
-    cantiAcces--;
+    //cantiAcces--;
     aCant[0]--;
     //compra.addItem(mueble1);
   } else if (_accesorio == accesoriosDisp[1].nombre) {
-    cantiAcces--;
+    //cantiAcces--;
     aCant[1]--;
     //compra.addItem(mueble2);
   } else if (_accesorio == accesoriosDisp[2].nombre) {
-    cantiAcces--;
+    //cantiAcces--;
     aCant[2]--;
     //compra.addItem(mueble3);
   } else {
@@ -471,6 +515,7 @@ function sumar() {
     mueble1.cantidad * mueble1.precio +
     mueble2.cantidad * mueble2.precio +
     mueble3.cantidad * mueble3.precio;
+  console.log(sumaMuebles);
   let sumAccesorios =
     aCant[0] * accesorio1.precio +
     aCant[1] * accesorio2.precio +
@@ -479,15 +524,5 @@ function sumar() {
   console.log(totalSuma);
   total.textContent = `Total: ${totalSuma}$`;
   actualizarProductos();
-  //actualizarAccesorios();
+  //actualizarAccesorios()
 }
-
-// console.log(carrito.total);
-// console.log(carrito);
-
-//sessionStorage.cart = JSON.stringify(carrito);
-
-// Para actualizar el precio del total
-
-//armarListaProd();
-//armarListaAcce();
